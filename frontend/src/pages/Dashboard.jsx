@@ -31,7 +31,7 @@ export default function Dashboard() {
     <div className="dashboard animate-in">
       <div className="page-header">
         <div>
-          <h1 className="page-title">Good {getGreeting()}, {user.name.split(' ')[0]} 👋</h1>
+          <h1 className="page-title">Good {getGreeting()}, {user.name.split(' ')[0]}</h1>
           <p className="page-subtitle">Here's what's happening across your projects</p>
         </div>
         <span className="date-badge">{format(new Date(), 'EEEE, MMM d')}</span>
@@ -80,7 +80,7 @@ export default function Dashboard() {
         <div className="dash-section">
           <h2 className="section-title">My Tasks</h2>
           {myTasks.length === 0 ? (
-            <div className="empty-state">No tasks assigned to you 🎉</div>
+            <div className="empty-state">No tasks assigned to you</div>
           ) : (
             <div className="task-list">
               {myTasks.map(task => (
@@ -113,7 +113,7 @@ export default function Dashboard() {
                   <Pie data={chartData} cx="50%" cy="50%" innerRadius={55} outerRadius={80} paddingAngle={3} dataKey="value">
                     {chartData.map((entry, i) => <Cell key={i} fill={entry.color} />)}
                   </Pie>
-                  <Tooltip contentStyle={{background:'var(--bg3)',border:'1px solid var(--border)',borderRadius:'8px',color:'var(--text)'}} />
+                  <Tooltip contentStyle={{background:'#fff',border:'1px solid #e0e0db',borderRadius:'6px',color:'#1a1a1a'}} />
                 </PieChart>
               </ResponsiveContainer>
               <div className="chart-legend">
@@ -134,7 +134,7 @@ export default function Dashboard() {
 
       {overdueTasks.length > 0 && (
         <div className="dash-section" style={{marginTop: 24}}>
-          <h2 className="section-title" style={{color:'var(--red)'}}>⚠ Overdue Tasks</h2>
+          <h2 className="section-title" style={{color:'var(--red)'}}>Overdue Tasks</h2>
           <div className="task-list">
             {overdueTasks.map(task => (
               <div key={task.id} className="task-row overdue-row" onClick={() => navigate(`/tasks/${task.id}`)}>
