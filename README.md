@@ -7,10 +7,8 @@ A full-stack team task management application with role-based access control, pr
 
 ---
 
-## 🚀 Live Demo
-
-> **Live URL:** `https://your-app.railway.app` *(replace after deploying)*
-
+🚀 Live Demo
+Live URL: https://taskflow-production-4ff2.up.railway.app
 ---
 
 ## ✨ Features
@@ -259,6 +257,4 @@ Deploy backend and frontend as two separate Railway services:
 
 ---
 
-## 📝 License
 
-MIT © 2024
