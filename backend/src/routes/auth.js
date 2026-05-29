@@ -62,4 +62,29 @@ router.get('/me', authenticate, (req, res) => {
   res.json({ user: userOut });
 });
 
+// Update profile
+router.put('/profile', authenticate, [
+  body('name').trim().notEmpty().withMessage('Name is required'),
+], (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) return res.status(400).json({ error: errors.array()[0].msg });
+  const { name } = req.body;
+  db.get('users').find({ id: req.user.id }).assign({ name }).write();
+  const user = db.get('users').find({ id: req.user.id }).value();
+  const { password: _, ...userOut } = user;
+  res.json({ user: userOut });
+});
+
+// Update password
+router.put('/password', authenticate, (req, res) => {
+  const { currentPassword, newPassword } = req.body;
+  if (!currentPassword || !newPassword) return res.status(400).json({ error: 'All fields are required.' });
+  if (newPassword.length < 6) return res.status(400).json({ error: 'Password must be at least 6 characters.' });
+  const user = db.get('users').find({ id: req.user.id }).value();
+  if (!bcrypt.compareSync(currentPassword, user.password)) return res.status(401).json({ error: 'Current password is incorrect.' });
+  const hashed = bcrypt.hashSync(newPassword, 10);
+  db.get('users').find({ id: req.user.id }).assign({ password: hashed }).write();
+  res.json({ message: 'Password updated.' });
+});
+
 module.exports = router;

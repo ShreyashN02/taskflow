@@ -1,10 +1,13 @@
+import { useState } from 'react';
 import { Outlet, NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import ProfileModal from './ProfileModal';
 import './Layout.css';
 
 export default function Layout() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const [showProfile, setShowProfile] = useState(false);
 
   const handleLogout = () => { logout(); navigate('/login'); };
 
@@ -26,7 +29,7 @@ export default function Layout() {
           </NavLink>
         </nav>
         <div className="sidebar-footer">
-          <div className="user-info">
+          <div className="user-info" onClick={() => setShowProfile(true)} style={{cursor:'pointer'}} title="View Profile">
             <div className="avatar">{user?.name?.[0]?.toUpperCase()}</div>
             <div className="user-details">
               <span className="user-name">{user?.name}</span>
@@ -41,6 +44,7 @@ export default function Layout() {
       <main className="main-content">
         <Outlet />
       </main>
+      {showProfile && <ProfileModal onClose={() => setShowProfile(false)} />}
     </div>
   );
 }
