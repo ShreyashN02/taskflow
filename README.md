@@ -7,9 +7,8 @@ A full-stack team task management application with role-based access control, pr
 
 ---
 
-#🚀 Live Demo
+🚀 Live Demo
 Live URL: https://taskflow-production-4ff2.up.railway.app
-
 ---
 
 ## ✨ Features
@@ -116,7 +115,7 @@ taskflow/
 
 ### 1. Clone the repo
 ```bash
-git clone https://github.com/ShreyashN02/taskflow.git
+git clone https://github.com/yourusername/taskflow.git
 cd taskflow
 ```
 
@@ -151,7 +150,7 @@ The backend serves the built frontend as static files — one Railway service fo
    git init
    git add .
    git commit -m "Initial commit"
-   git remote add origin https://github.com/ShreyashN02/taskflow.git
+   git remote add origin https://github.com/yourusername/taskflow.git
    git push -u origin main
    ```
 
@@ -256,6 +255,6 @@ Deploy backend and frontend as two separate Railway services:
 
 4. **Role per project** — A user can be Admin in one project and Member in another. Roles are stored in `projectMembers` join table.
 
-
+---
 
 
